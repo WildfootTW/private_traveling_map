@@ -1,0 +1,170 @@
+html, body {
+  box-sizing: content-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+#main {
+  height: 100vh;
+  display: flex;
+}
+
+#logo {
+  /* set height to prevent GitHub ribbon overlapping */
+  height: 100px;
+  margin-bottom: 28px;
+  -webkit-filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+}
+
+#left {
+  background-image: url(images/background-h.png);
+  background-repeat: no-repeat no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 35vw;
+  /* place github ribbon correctly */
+  position: relative;
+  min-width: 360px;
+  z-index: 1;
+  overflow: auto;
+  box-shadow: 16px 0 24px 2px rgba(0, 0, 0, 0.14),
+               6px 0 30px 5px rgba(0, 0, 0, 0.12),
+               8px 0 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+#left > div {
+  margin: 16px;
+}
+
+#right {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+#mapContainer {
+  position: absolute;
+  top: 0; right: 0;
+  left: 0; bottom: 0;
+  /*background-color: red;*/
+}
+
+/* popups on the map */
+.leaflet-popup-content h4.title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0.2em 0px 0.3em;
+}
+
+.leaflet-popup-content .address {
+  font-size: 14px;
+  margin: 0;
+}
+
+#search-result li {
+  cursor: pointer;
+  list-style-type: none;
+  line-height: 31px;
+  border-bottom: 1px solid rgba(221, 221, 221, .6);
+}
+
+#searchBox {
+  flex: 1 1 auto;
+  /* strange bug in Firefox 39, where the input field would bleed out */
+  min-width: 0;
+  margin-right: 8px;
+}
+
+#nearestInfo {
+  margin: 16px 4px;
+}
+
+.flex {
+  display: flex;
+}
+
+.small {
+  font-size: .7em;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+}
+
+button {
+  background-color: #009688;
+  border: none;
+  /* thanks to material design */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+  color: white;
+  padding: 8px;
+  min-width: 88px;
+  line-height: 24px;
+  border-radius: 2px;
+  margin-left: 8px;
+  margin-right: 8px;
+  transition: all 400ms ease-out;
+  transition-property: box-shadow, background-color;
+}
+
+button:hover {
+  background-color: #00897b;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+button:disabled {
+  background-color: #e0e0e0;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+input[type=text] {
+  line-height: 24px;
+  padding: 8px;
+  border: none;
+  border-bottom: 2px #b2dfdb solid;
+  transition: border-color 400ms ease-out;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+input[type=text]:focus {
+  border-bottom-color: #009688;
+}
+
+hr {
+  border: 1px solid #ddd;
+}
+
+footer {
+  font-size: 12px;
+  text-align: center;
+  color: #444;
+  line-height: 1.4;
+
+}
+
+@media screen and (max-width: 767px) {
+  #main {
+    height: auto;
+    flex-direction: column;
+  }
+
+  #left {
+  	width: 100%;
+  }
+
+  #right {
+  	height: 70vh;
+  }
+
+  #search-result {
+    max-height: 400px;
+    overflow: auto;
+  }
+}
+
