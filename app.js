@@ -43,7 +43,7 @@ App.loadHotspotData = function() {
   }
 
   $.ajax({
-    url: 'hotspotlist.csv',
+    url: 'placelist.csv',
     success: function(resp) {
       if (storageSupported)
         localStorage.setItem(storageNS, resp);
@@ -52,7 +52,7 @@ App.loadHotspotData = function() {
   });
 
   function processHotspotData(resp) {
-    var coll = App.hotspotColl = App.Util.csv2json(resp, ["owner", "area", "name", "addr", "lat", "lng"]);
+    var coll = App.hotspotColl = App.Util.csv2json(resp, ["name", "city", "district", "addr", "lat", "lng"]);
     var hs, mkr;
     var hotspotCat = {};
     // add the icon
@@ -60,10 +60,10 @@ App.loadHotspotData = function() {
     // determining its name by finding LCS of name of points
     for (var i = 0, c = coll.length; i < c; i++) {
       hs = coll[i];
-      if (!hotspotCat[hs.area]) {
-        hotspotCat[hs.area] = [];
+      if (!hotspotCat[hs.district]) {
+        hotspotCat[hs.district] = [];
       }
-      hotspotCat[hs.area].push(hs);
+      hotspotCat[hs.district].push(hs);
     }
 
     for (var x in hotspotCat) {
